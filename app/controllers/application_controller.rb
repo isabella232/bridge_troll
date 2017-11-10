@@ -42,4 +42,12 @@ class ApplicationController < ActionController::Base
     flash[:error] = "You are not authorized to perform this action."
     redirect_to(request.referer || root_path)
   end
+
+  def with_timer(name)
+    start = Time.now
+    block_result = yield
+    dur = (Time.now - start) * 1000 # in milliseconds
+    honeycomb_metadata["#{ name }_dur_ms"] = dur
+    block_result
+  end
 end

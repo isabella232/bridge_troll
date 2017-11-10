@@ -11,9 +11,9 @@ class ChaptersController < ApplicationController
 
   def show
     skip_authorization
-    @chapter_events = (
-      @chapter.events.includes(:organizers, :location).published_or_visible_to(current_user) + @chapter.external_events
-    ).sort_by(&:ends_at)
+    @chapter_events = with_timer(:chapter_find_events) do
+      (@chapter.events.includes(:organizers, :location).published_or_visible_to(current_user) + @chapter.external_events).sort_by(&:ends_at)
+    end
 
     honeycomb_metadata[:chapter_num_events] = @chapter_events.size
 
@@ -81,7 +81,9 @@ class ChaptersController < ApplicationController
   end
 
   def assign_chapter
-    @chapter = Chapter.find(params[:id])
+    @chapter = with_timer(:chapter_find) do
+      Chapter.find(params[:id])
+    end
 
     honeycomb_metadata[:chapter_id] = @chapter.id
   end
