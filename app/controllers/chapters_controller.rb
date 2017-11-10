@@ -5,6 +5,8 @@ class ChaptersController < ApplicationController
   def index
     skip_authorization
     @chapters = Chapter.all.includes(:organization)
+
+    honeycomb_metadata[:num_chapters] = @chapters.size
   end
 
   def show
@@ -12,6 +14,9 @@ class ChaptersController < ApplicationController
     @chapter_events = (
       @chapter.events.includes(:organizers, :location).published_or_visible_to(current_user) + @chapter.external_events
     ).sort_by(&:ends_at)
+
+    honeycomb_metadata[:chapter_num_events] = @chapter_events.size
+
     @show_organizers = true
 
     if @chapter.has_leader?(current_user)
@@ -77,5 +82,7 @@ class ChaptersController < ApplicationController
 
   def assign_chapter
     @chapter = Chapter.find(params[:id])
+
+    honeycomb_metadata[:chapter_id] = @chapter.id
   end
 end
