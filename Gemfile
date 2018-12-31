@@ -83,4 +83,4 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'honeycomb-rails', git: 'https://github.com/honeycombio/honeycomb-rails'
+gem 'honeycomb-beeline'
