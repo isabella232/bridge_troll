@@ -17,6 +17,8 @@ New? Keep reading this, and then read the [contributor guidelines](CONTRIBUTING.
 * The staging server lives at [bridgetroll-staging.herokuapp.com](http://bridgetroll-staging.herokuapp.com/)
 * The continuous integration server is at [travis-ci.org/railsbridge/bridge_troll](http://travis-ci.org/railsbridge/bridge_troll)
 
+For details on how production and staging are setup, see the [deployment docs](doc/deploy.md).
+
 ### Features & Bugs
 * We use [GitHub Issues](https://github.com/railsbridge/bridge_troll/issues?state=open) for tracking bugs and features.
  * Issues marked as [Help Wanted](https://github.com/railsbridge/bridge_troll/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) are ready to go, so pick one up!
@@ -44,7 +46,7 @@ git clone https://github.com/username/bridge_troll.git
 cd bridge_troll
 ```
 
-Make sure you have the correct version of ruby before installing the gems for this repo. If you are using rvm, run: `rvm install 2.3.1`. For rbenv, run: `rbenv install 2.3.1`.
+Make sure you have the correct version of ruby before installing the gems for this repo. If you are using rvm, run: `rvm install 2.5.3`. For rbenv, run: `rbenv install 2.5.3`.
 
 Finish setting up your environment
 ```
@@ -56,18 +58,19 @@ To verify your environment is set up correctly, run the server
 rails s
 ```
 
-Go to http://localhost:3000/ and verify your success! You can play with the app locally to become more familiar with it. 
+Go to http://localhost:3000/ and verify your success! You can play with the app locally to become more familiar with it.
 
 Pro-tip: Confirming Users Locally
 * outgoing emails are logged, so if you scroll back in your terminal window, you can see the contents of the confirmation email and copy/paste the confirmation link into your browser
-* or create a valid user for most recent signup, run `rails console`: `User.last.confirm!` 
+* or create a valid user for most recent signup, run `rails console`: `User.last.confirm!`
 
 ### Running tests
 
 This project has many tests that you should run before submitting a pull request, even if it's just a simple text change. You will need to install PhantomJS to run the tests. On OSX with Homebrew, try
 ```
 brew update
-brew install phantomjs
+brew tap homebrew/cask
+brew cask install phantomjs
 ```
 
 If you are on a Ubuntu-based linux distribution, you can try
@@ -107,7 +110,7 @@ We have created a living style guide to keep track of HTML components and their 
 
 We're still working on adding every element to the page, so if you see missing components, add it to the erb template ([style_guide.html.erb](app/views/static_pages/style_guide.html.erb))
 
-##Additional Services
+## Additional Services
 
 The following setup is only required if you are developing for these specific features.
 
@@ -133,7 +136,7 @@ You can see rendered versions of all emails the application can send at http://l
 
 If you are just getting started, skip these steps for now.
 
-When developing the parts of Bridge Troll that communicate with external services such as meetup and authentication, you will need to use API keys, which are most easily managed with environment variables. Environment variables control various aspects of how your code runs. 
+When developing the parts of Bridge Troll that communicate with external services such as meetup and authentication, you will need to use API keys, which are most easily managed with environment variables. Environment variables control various aspects of how your code runs.
 
 To set up environment variables for the Rails server, you'll need to create an `.env` file in the Bridge Troll directory. Here's a sample one (note these are not real API keys):
 

@@ -1,3 +1,14 @@
+# BEGIN: SimpleCov
+require 'simplecov'
+SimpleCov.start :rails do
+  # add_filter '/test/'
+  # add_filter '/app/channels/application_cable/channel.rb'
+  # add_filter '/app/channels/application_cable/connection.rb'
+  # add_filter '/app/jobs/application_job.rb'
+  # add_filter '/app/mailers/application_mailer.rb'
+end
+# END: SimpleCov
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 RSpec.configure do |config|
@@ -6,6 +17,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = :random
+
+  # Print the 10 slowest examples and example groups at the
+  # end of the spec run, to help surface which specs are running
+  # particularly slow.
+  config.profile_examples = 10
 
   # Seed global randomization in this process using the `--seed` CLI option.
   # Setting this allows you to use `--seed` to deterministically reproduce

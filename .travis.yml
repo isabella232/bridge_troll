@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.3.1
+  - 2.5.3
 bundler_args: "--without development --without production --deployment"
 cache:
   bundler: true
@@ -16,7 +16,7 @@ env:
 before_install:
   - 'npm install'
   - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
-  - "rvm @global do gem uninstall bundler -x && gem install bundler"
+  - "rvm @global do gem install bundler"
 before_script:
   - 'bundle exec rake bower:install:development'
   - "./config/before-travis.sh"

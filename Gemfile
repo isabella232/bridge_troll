@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.5.3'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '~> 5.0.0'
-gem 'devise', '~> 4.2.0'
+gem 'rails', '~> 5.0.7'
+gem 'devise', '~> 4.6.0'
 gem 'pundit'
 gem 'puma'
 gem 'jquery-rails'
@@ -53,7 +53,6 @@ gem 'backbone-on-rails'
 group :development do
   gem 'rb-fsevent'
   gem 'bullet'
-  gem 'heroku_san'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'byebug'
@@ -61,7 +60,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'jasmine'
+  gem 'jasmine', '~> 2.6.0'
   gem 'jasmine-jquery-rails'
   gem 'sqlite3'
   gem 'rspec-rails'
@@ -72,15 +71,16 @@ end
 
 group :test do
   gem 'webmock'
-  gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'factory_bot_rails', '4.8.2'
+  gem 'capybara', '2.13.0'
   gem 'poltergeist', require: false
   gem 'selenium-webdriver', require: false
   gem 'launchy'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'faker'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
+  gem 'simplecov', '0.16.1', require: false
 end
 
 gem 'honeycomb-beeline'
